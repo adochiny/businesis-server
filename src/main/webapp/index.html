@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>RiskReview</title>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/app.css"/>
+
+        <style>
+            body {
+                padding-top: 10px;
+                background-color: #F5F5F5;
+            }
+        </style>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="nav">
+                        <li><a href="#AddNewOrder"> Add New Order </a></li>
+                        <li><a href="#ShowOrders"> Show Order </a></li>
+
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <div ng-view></div>
+                </div>
+            </div>
+        </div><!-- /.container -->
+
+    </body>
+</html>
