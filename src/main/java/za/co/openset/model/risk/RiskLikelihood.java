@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /**
  * Created by adonis on 2015/06/06.
+ *
  */
 @Entity
 @Table(name="risk_likelihood",
