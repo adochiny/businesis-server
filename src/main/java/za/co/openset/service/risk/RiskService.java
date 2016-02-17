@@ -1,11 +1,7 @@
 package za.co.openset.service.risk;
 
-import za.co.openset.dao.AssetWarehouseRepo;
-import za.co.openset.dao.OrganisationRepo;
-import za.co.openset.dao.WarehouseRepo;
-import za.co.openset.model.AssetWarehouse;
-import za.co.openset.model.Organisation;
-import za.co.openset.model.Warehouse;
+import za.co.openset.dao.risk.*;
+import za.co.openset.model.risk.*;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -20,37 +16,122 @@ import java.util.List;
 public class RiskService {
 
     @Inject
-    private OrganisationRepo organisationRepo;
+    private RiskCategoryRepo riskCategoryRepo;
 
     @Inject
-    private WarehouseRepo warehouseRepo;
+    private RiskControlEffectivenessRepo riskControlEffectivenessRepo;
 
     @Inject
-    private AssetWarehouseRepo assetWarehouseRepo;
+    private RiskImpactRepo riskImpactRepo;
 
-    // functions
-    public  Organisation update( Organisation po) throws Exception {
-        return organisationRepo.update(po);
-    }
-    public Organisation getOrganisationById(Long id) throws Exception {
-        return organisationRepo.findById(id);
-    }
-    public List< Organisation> getAllOrganisations() throws Exception {
-        return organisationRepo.findAll();
-    }
+    @Inject
+    private RiskLikelihoodRepo riskLikelihoodRepo;
 
-    // functions warehouse
-    public  Warehouse update(Warehouse po) throws Exception {
-        return warehouseRepo.update(po);
-    }
-    public Warehouse getWarehouseById(Long id) throws Exception {
-        return warehouseRepo.findById(id);
-    }
-    public List<Warehouse> getAllWarehouses() throws Exception {
-        return warehouseRepo.findAll();
+    @Inject
+    private RiskObjectiveRepo riskObjectiveRepo;
+
+    @Inject
+    private RiskSubCategoryRepo riskSubCategoryRepo;
+
+    // functions RiskObjective
+    public RiskObjective update(RiskObjective po) throws Exception {
+        return riskObjectiveRepo.update(po);
     }
 
-    public AssetWarehouse update(AssetWarehouse po) throws Exception {
-        return assetWarehouseRepo.update(po);
+    public RiskObjective getRiskObjectiveById(Long id) throws Exception {
+        return riskObjectiveRepo.findById(id);
     }
+
+    public List<RiskObjective> getAllRiskObjectives() throws Exception {
+        return riskObjectiveRepo.findAll();
+    }
+
+    // functions RiskLikelihood
+    public RiskLikelihood update(RiskLikelihood po) throws Exception {
+        return riskLikelihoodRepo.update(po);
+    }
+
+    public RiskLikelihood getRiskLikelihoodById(Long id) throws Exception {
+        return riskLikelihoodRepo.findById(id);
+    }
+
+    public List<RiskLikelihood> getAllRiskLikelihoods() throws Exception {
+        return riskLikelihoodRepo.findAll();
+    }
+
+    // functions RiskControlEffectiveness
+    public RiskControlEffectiveness update(RiskControlEffectiveness po) throws Exception {
+        return riskControlEffectivenessRepo.update(po);
+    }
+
+    public RiskControlEffectiveness getRiskControlEffectivenessById(Long id) throws Exception {
+        return riskControlEffectivenessRepo.findById(id);
+    }
+
+    public List<RiskControlEffectiveness> getAllRiskControlEffectiveness() throws Exception {
+        return riskControlEffectivenessRepo.findAll();
+    }
+
+    // functions RiskSubCategory
+    public RiskSubCategory update(RiskSubCategory po) throws Exception {
+        return riskSubCategoryRepo.update(po);
+    }
+
+    public RiskSubCategory getRiskSubCategoryById(Long id) throws Exception {
+        return riskSubCategoryRepo.findById(id);
+    }
+
+    public List<RiskSubCategory> getAllRiskSubCategories() throws Exception {
+        return riskSubCategoryRepo.findAll();
+    }
+
+    // functions RiskCategory
+    public RiskCategory update(RiskCategory po) throws Exception {
+        return riskCategoryRepo.update(po);
+    }
+
+    public RiskCategory getRiskCategoryRepoById(Long id) throws Exception {
+        return riskCategoryRepo.findById(id);
+    }
+
+    public List<RiskCategory> getAllRiskCategories() throws Exception {
+        return riskCategoryRepo.findAll();
+    }
+
+    // functions RiskImpact
+    public RiskImpact update(RiskImpact po) throws Exception {
+        return riskImpactRepo.update(po);
+    }
+
+    public RiskImpact getRiskImpactById(Long id) throws Exception {
+        return riskImpactRepo.findById(id);
+    }
+
+    public List<RiskImpact> getAllRiskImpacts() throws Exception {
+        return riskImpactRepo.findAll();
+    }
+
+    public RiskImpact create(RiskImpact po) throws Exception {
+        return riskImpactRepo.update(po);
+    }
+
+    /**
+     * Invoking the function. has to be public to be visible to the external classes.
+     *
+     * @param key
+     * @param <T>
+     * @return
+     */
+     /* public <T> T fetchValue(String key) {
+        try {
+            Method method = functionMap.get(key);
+            return (T)method.invoke(this);
+        } catch (IllegalArgumentException e) {
+            throw new ServiceException(e);
+        } catch (IllegalAccessException e) {
+            throw new ServiceException(e);
+        } catch (InvocationTargetException e) {
+            throw new ServiceException(e);
+        }
+     } */
 }

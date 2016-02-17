@@ -5,12 +5,9 @@ package za.co.openset.bo.risk;
  *
  */
 
-import za.co.openset.model.AssetWarehouse;
-import za.co.openset.model.Organisation;
-import za.co.openset.model.Warehouse;
-import za.co.openset.model.user.User;
-import za.co.openset.service.AssetService;
+import za.co.openset.model.risk.*;
 import za.co.openset.service.GeneralService;
+import za.co.openset.service.risk.RiskService;
 import za.co.openset.utils.AManagerUtils;
 
 import javax.inject.Inject;
@@ -27,12 +24,179 @@ public class RiskManagement {
     private GeneralService generalService;
 
     @Inject
-    private AssetService assetService;
+    private RiskService riskService;
 
     @Inject
     private AManagerUtils aManagerUtils;
 
     @GET
+    @Path("/risk-categories")
+    @Produces("application/json")
+    public Response getRiskCategories() throws Exception {
+        // no reverse link involved
+        List<RiskCategory> all = riskService.getAllRiskCategories();
+        return Response.status(Response.Status.OK).entity(all).build();
+    }
+
+    @GET
+    @Path("/risk-sub-categories")
+    @Produces("application/json")
+    public Response getRiskSubCategories() throws Exception {
+        // no reverse link involved
+        List<RiskSubCategory> all = riskService.getAllRiskSubCategories();
+        return Response.status(Response.Status.OK).entity(all).build();
+    }
+
+    @GET
+    @Path("/risk-objectives")
+    @Produces("application/json")
+    public Response getRiskObjectives() throws Exception {
+        // no reverse link involved
+        List<RiskObjective> all = riskService.getAllRiskObjectives();
+        return Response.status(Response.Status.OK).entity(all).build();
+    }
+
+    @GET
+    @Path("/risk-likelihoods")
+    @Produces("application/json")
+    public Response getRiskLikelihoods() throws Exception {
+        // no reverse link involved
+        List<RiskLikelihood> all = riskService.getAllRiskLikelihoods();
+        return Response.status(Response.Status.OK).entity(all).build();
+    }
+
+    @GET
+    @Path("/risk-control_effectiveness")
+    @Produces("application/json")
+    public Response getRiskControlEffectiveness() throws Exception {
+        // no reverse link involved
+        List<RiskControlEffectiveness> all = riskService.getAllRiskControlEffectiveness();
+        return Response.status(Response.Status.OK).entity(all).build();
+    }
+
+    @GET
+    @Path("/risk-impact")
+    @Produces("application/json")
+    public Response getRiskImpacts() throws Exception {
+        // no reverse link involved
+        List<RiskImpact> all = riskService.getAllRiskImpacts();
+        return Response.status(Response.Status.OK).entity(all).build();
+    }
+
+    @POST
+    @Path("/create-update-risk-category")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response createRiskCategory(RiskCategory category) {
+        logger.info("category created or updated : " + category);
+
+        if (category.getRiskCategoryId() != null) {
+            aManagerUtils.setCommonFieldsUpdate(category, 101L);
+        } else {
+            aManagerUtils.setCommonFieldsCreate(category, 101L);
+        }
+        try {
+            category = riskService.update(category);
+        } catch (Exception e) {
+            Response.status(Response.Status.NOT_ACCEPTABLE).entity(category).build();
+        }
+        // create response.
+        return Response.status(Response.Status.OK).entity(category).build();
+    }
+
+    @POST
+    @Path("/create-update-risk-sub-category")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response createRiskSubCategory(RiskSubCategory object) {
+        logger.info("category created or updated : " + object);
+
+        if (object.getRiskSubCategoryId() != null) {
+            aManagerUtils.setCommonFieldsUpdate(object, 101L);
+        } else {
+            aManagerUtils.setCommonFieldsCreate(object, 101L);
+        }
+        try {
+            object = riskService.update(object);
+        } catch (Exception e) {
+            Response.status(Response.Status.NOT_ACCEPTABLE).entity(object).build();
+        }
+        // create response.
+        return Response.status(Response.Status.OK).entity(object).build();
+    }
+
+    @POST
+    @Path("/create-update-risk-control-effectiveness")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response createRiskControlEffectiveness(RiskControlEffectiveness object) {
+        logger.info("category created or updated : " + object);
+
+        if (object.getRiskControlEffectivenessId() != null) {
+            aManagerUtils.setCommonFieldsUpdate(object, 101L);
+        } else {
+            aManagerUtils.setCommonFieldsCreate(object, 101L);
+        }
+        try {
+            object = riskService.update(object);
+        } catch (Exception e) {
+            Response.status(Response.Status.NOT_ACCEPTABLE).entity(object).build();
+        }
+        // create response.
+        return Response.status(Response.Status.OK).entity(object).build();
+    }
+
+    @POST
+    @Path("/create-update-risk-likelihood")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response createRiskLikelihood(RiskLikelihood object) {
+        logger.info("category created or updated : " + object);
+
+        if (object.getRiskLikelihoodId() != null) {
+            aManagerUtils.setCommonFieldsUpdate(object, 101L);
+        } else {
+            aManagerUtils.setCommonFieldsCreate(object, 101L);
+        }
+        try {
+            object = riskService.update(object);
+        } catch (Exception e) {
+            Response.status(Response.Status.NOT_ACCEPTABLE).entity(object).build();
+        }
+        // create response.
+        return Response.status(Response.Status.OK).entity(object).build();
+    }
+
+    @POST
+    @Path("/create-update-risk-objective")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response createRiskObjective(RiskObjective object) {
+        logger.info("category created or updated : " + object);
+
+        if (object.getRiskObjectiveId() != null) {
+            aManagerUtils.setCommonFieldsUpdate(object, 101L);
+        } else {
+            aManagerUtils.setCommonFieldsCreate(object, 101L);
+        }
+        try {
+            object = riskService.update(object);
+        } catch (Exception e) {
+            Response.status(Response.Status.NOT_ACCEPTABLE).entity(object).build();
+        }
+        // create response.
+        return Response.status(Response.Status.OK).entity(object).build();
+    }
+
+    @GET
+    @Path("/risk-objectives/{riskObjectivesId}")
+    @Produces("application/json")
+    public Response getAssetWarehouses(@PathParam("riskObjectivesId") Long riskObjectivesId) throws Exception {
+        RiskObjective objective = riskService.getRiskObjectiveById(riskObjectivesId);
+        return Response.status(Response.Status.OK).entity(objective).build();
+    }
+
+    /*@GET
     @Path("/organisations")
     @Produces("application/json")
     public Response getAllOrganisations() throws Exception {
@@ -49,9 +213,9 @@ public class RiskManagement {
             }
         }
         return Response.status(Response.Status.OK).entity(allOrganisations).build();
-    }
+    }*/
 
-    @GET
+   /* @GET
     @Path("/warehouses")
     @Produces("application/json")
     public Response getAllWarehouses() throws Exception {
@@ -62,9 +226,9 @@ public class RiskManagement {
             warehouse.getOrganisation().setWarehouses(null);
         }
         return Response.status(Response.Status.OK).entity(allWarehouses).build();
-    }
+    }*/
 
-    @GET
+    /*@GET
     @Path("/asset-warehouses/{assetId}")
     @Produces("application/json")
     public Response getAssetWarehouses(@PathParam("assetId") Long assetId) throws Exception {
@@ -86,7 +250,8 @@ public class RiskManagement {
         }
         return Response.status(Response.Status.OK).entity(objects).build();
     }
-
+*/
+/*
     @POST
     @Path("/create-update-organisation")
     @Consumes("application/json")
@@ -107,7 +272,9 @@ public class RiskManagement {
         // create response.
         return Response.status(Response.Status.OK).entity(type).build();
     }
+*/
 
+/*
     @POST
     @Path("/create-update-warehouse")
     @Consumes("application/json")
@@ -128,5 +295,7 @@ public class RiskManagement {
         // create response.
         return Response.status(Response.Status.OK).entity(type).build();
     }
+*/
+
 
 }
