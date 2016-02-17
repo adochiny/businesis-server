@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 /**
  * Created by adonis on 2015/06/06.
+ *
  */
 public class RiskImpactRepo extends AbstractJPARepository<RiskImpact> {
 

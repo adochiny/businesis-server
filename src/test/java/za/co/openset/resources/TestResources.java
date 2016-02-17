@@ -19,7 +19,7 @@ public class TestResources {
 	@Singleton
 	@SuppressWarnings("unused")
 	private EntityManager createEntityManager() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("amanager_test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("riskreview_test");
 		return emf.createEntityManager();
 	}
 }

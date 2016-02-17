@@ -24,5 +24,27 @@ public class RiskCategory extends BasePo {
     @Column(name = "description")
     private String description;
 
+    public Long getRiskCategoryId() {
+        return riskCategoryId;
+    }
 
+    public void setRiskCategoryId(Long riskCategoryId) {
+        this.riskCategoryId = riskCategoryId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

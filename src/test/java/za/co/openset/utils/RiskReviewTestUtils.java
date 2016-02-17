@@ -1,11 +1,12 @@
 package za.co.openset.utils;
 
 import za.co.openset.model.*;
-import za.co.openset.model.risk.RiskImpact;
+import za.co.openset.model.risk.*;
 import za.co.openset.model.user.User;
 import za.co.openset.model.user.UserRole;
 import za.co.openset.type.AddressType;
 import za.co.openset.type.AssetStatus;
+import za.co.openset.type.risk.FrequencyOfControls;
 
 import java.util.*;
 
@@ -20,6 +21,7 @@ public class RiskReviewTestUtils {
         // get next long value
         return randomno.nextLong();
     }
+
     public Integer generateRandomInt() {
         // get next int value
         return randomno.nextInt();
@@ -191,6 +193,48 @@ public class RiskReviewTestUtils {
         ri.setScale(generateRandomString());
         ri.setDescription(generateRandomString());
         return ri;
+    }
+
+    public RiskControlEffectiveness createRiskControlEffectiveness() {
+        RiskControlEffectiveness ri = new RiskControlEffectiveness();
+        setCommonFieldsCreate(ri, 1L);
+        ri.setScale(generateRandomString());
+        ri.setDescription(generateRandomString());
+        return ri;
+    }
+
+    public RiskLikelihood createRiskLikelihood() {
+        RiskLikelihood ri = new RiskLikelihood();
+        setCommonFieldsCreate(ri, 1L);
+        ri.setScale(generateRandomString());
+        ri.setDescription(generateRandomString());
+        return ri;
+    }
+
+    public RiskCategory createRiskCategory() {
+        RiskCategory ri = new RiskCategory();
+        setCommonFieldsCreate(ri, 1L);
+        ri.setName(generateRandomString());
+        ri.setDescription(generateRandomString());
+        return ri;
+    }
+
+    public RiskSubCategory createRiskSubCategory() {
+        RiskSubCategory ri = new RiskSubCategory();
+        setCommonFieldsCreate(ri, 1L);
+        ri.setName(generateRandomString());
+        ri.setDescription(generateRandomString());
+        return ri;
+    }
+    public RiskObjective createRiskObjective() {
+        RiskObjective ro = new RiskObjective();
+        setCommonFieldsCreate(ro, 1L);
+        ro.setAccountablePersonDepartment(generateRandomString());
+        ro.setDashboardsMonitoringReporting(generateRandomString());
+        ro.setManagementMitigation(generateRandomString());
+        ro.setFrequencyOfControls(FrequencyOfControls.Daily);
+        ro.setControlEffectiveness(generateRandomString());
+        return ro;
     }
 
 

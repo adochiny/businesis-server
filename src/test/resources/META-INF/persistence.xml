@@ -3,13 +3,14 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="amanager_test" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="riskreview_test" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!--<class>com.blogspot.soahowto.schematic.hr.Employee</class>-->
 		<!--<class>za.co.openset.model.Address</class>-->
 		<!--<class>za.co.openset.model.user.User</class>-->
 		<!--<class>za.co.openset.model.user.UserRole</class>-->
 		<!--<class>za.co.openset.model.ContactDetails</class>-->
+
        <class>za.co.openset.model.Address</class>
        <class>za.co.openset.model.Attribute</class>
        <class>za.co.openset.model.AttributeType</class>
@@ -35,6 +36,12 @@
        <class>za.co.openset.model.AssetWarehouse</class>
 
        <class>za.co.openset.model.risk.RiskImpact</class>
+       <class>za.co.openset.model.risk.RiskLikelihood</class>
+       <class>za.co.openset.model.risk.RiskControlEffectiveness</class>
+       <class>za.co.openset.model.risk.RiskCategory</class>
+       <class>za.co.openset.model.risk.RiskSubCategory</class>
+       <class>za.co.openset.model.risk.RiskObjective</class>
+
 		<!--<properties>-->
 			<!--<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>-->
 			<!--<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>-->

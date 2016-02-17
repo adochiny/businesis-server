@@ -22,12 +22,23 @@ public class RiskObjective extends BasePo {
     @Column(name = "risk_objective_id")
     private Long riskObjectiveId;
 
-    // mapped to riskimpact., Many StrategicObjectives to 1 riskimpact
+    // mapped to riskimpact., Many Objectives to 1 riskimpact
     @ManyToOne(optional=false,
             cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
     @JoinColumn(name="risk_impact_id",referencedColumnName="risk_impact_id")
     private RiskImpact riskImpact;
 
+    // mapped to risk_likelihood., Many Objectives to 1 risk_likelihood
+    @ManyToOne(optional=false,
+        cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
+    @JoinColumn(name="risk_likelihood_id",referencedColumnName="risk_likelihood_id")
+    private RiskLikelihood riskLikelihood;
+
+    // mapped to riskControlEffectiveness., Many Objectives to 1 riskControlEffectiveness
+    @ManyToOne(optional=false,
+        cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
+    @JoinColumn(name="risk_control_effectiveness_Id",referencedColumnName="risk_control_effectiveness_Id")
+    private RiskControlEffectiveness riskControlEffectiveness;
 
 
     @Column(name = "management_mitigation")
@@ -47,8 +58,75 @@ public class RiskObjective extends BasePo {
     private String accountablePersonDepartment;
 
 
+    public Long getRiskObjectiveId() {
+        return riskObjectiveId;
+    }
 
+    public void setRiskObjectiveId(Long riskObjectiveId) {
+        this.riskObjectiveId = riskObjectiveId;
+    }
 
+    public RiskImpact getRiskImpact() {
+        return riskImpact;
+    }
 
+    public void setRiskImpact(RiskImpact riskImpact) {
+        this.riskImpact = riskImpact;
+    }
 
+    public RiskLikelihood getRiskLikelihood() {
+        return riskLikelihood;
+    }
+
+    public void setRiskLikelihood(RiskLikelihood riskLikelihood) {
+        this.riskLikelihood = riskLikelihood;
+    }
+
+    public RiskControlEffectiveness getRiskControlEffectiveness() {
+        return riskControlEffectiveness;
+    }
+
+    public void setRiskControlEffectiveness(RiskControlEffectiveness riskControlEffectiveness) {
+        this.riskControlEffectiveness = riskControlEffectiveness;
+    }
+
+    public String getManagementMitigation() {
+        return managementMitigation;
+    }
+
+    public void setManagementMitigation(String managementMitigation) {
+        this.managementMitigation = managementMitigation;
+    }
+
+    public FrequencyOfControls getFrequencyOfControls() {
+        return frequencyOfControls;
+    }
+
+    public void setFrequencyOfControls(FrequencyOfControls frequencyOfControls) {
+        this.frequencyOfControls = frequencyOfControls;
+    }
+
+    public String getControlEffectiveness() {
+        return controlEffectiveness;
+    }
+
+    public void setControlEffectiveness(String controlEffectiveness) {
+        this.controlEffectiveness = controlEffectiveness;
+    }
+
+    public String getDashboardsMonitoringReporting() {
+        return dashboardsMonitoringReporting;
+    }
+
+    public void setDashboardsMonitoringReporting(String dashboardsMonitoringReporting) {
+        this.dashboardsMonitoringReporting = dashboardsMonitoringReporting;
+    }
+
+    public String getAccountablePersonDepartment() {
+        return accountablePersonDepartment;
+    }
+
+    public void setAccountablePersonDepartment(String accountablePersonDepartment) {
+        this.accountablePersonDepartment = accountablePersonDepartment;
+    }
 }

@@ -15,7 +15,7 @@ public class RiskControlEffectiveness extends BasePo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "risk_control_effectiveness_seq")
     @SequenceGenerator(name = "risk_control_effectiveness_seq", sequenceName = "risk_control_effectiveness_seq")
-    @Column(name = "risk_impact_id")
+    @Column(name = "risk_control_effectiveness_Id")
     private Long riskControlEffectivenessId;
 
     @Column(name = "scale", unique = true)
