@@ -12,6 +12,7 @@ import java.util.*;
 
 /**
  * Created by adonis on 2015/06/05.
+ *
  */
 public class RiskReviewTestUtils {
     // create random object

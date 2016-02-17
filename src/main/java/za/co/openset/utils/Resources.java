@@ -11,7 +11,7 @@ public class Resources {
 
     @SuppressWarnings("unused")
     @Produces
-    @PersistenceContext(unitName="A-MANAGER-PERSISTENCE-UNIT")
+    @PersistenceContext(unitName="RISK-REV-PERSISTENCE-UNIT")
     private EntityManager entityManager;
 
 }

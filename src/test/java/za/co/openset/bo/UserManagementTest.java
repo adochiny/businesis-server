@@ -18,14 +18,14 @@ public class UserManagementTest {
     RiskReviewTestUtils iManagerTestUtils = new RiskReviewTestUtils();
 
     @Test
-    @Ignore
+    //@Ignore
     public void testCreateUser() throws Exception {
 
         User user = iManagerTestUtils.createUser();
-        user.setFirstName("AdonisTest123");
-        user.setSurname("MhlangaTest123");
-        user.setUsername("adonisTest123");
-        user.setPassword("P@ssw0rd");
+        user.setFirstName("adonis");
+        user.setSurname("Mhlanga");
+        user.setUsername("adonis@gmail.com");
+        user.setPassword("123");
         user.setDateOfBirth(new Date());
 
         // update this val
@@ -49,7 +49,7 @@ public class UserManagementTest {
         try {
             ResteasyClient client = new ResteasyClientBuilder().build();
             ResteasyWebTarget target = client
-                    .target("http://localhost:8080/iManager/user-management/create-update-user");
+                    .target("http://localhost:8080/risk-rev/user-management/create-update-user");
             Response response = target.request().post(Entity.entity(user, "application/json"));
             if (response.getStatus() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
@@ -66,12 +66,12 @@ public class UserManagementTest {
 
 
     @Test
-    @Ignore
+    // @Ignore
     public void testAuthUser() throws Exception {
 
         UserDto userDto = new UserDto();
 
-        userDto.setUsername("adonis@fnb.co.za");
+        userDto.setUsername("adonis@gmail.com");
         userDto.setPassword("123");
 
         assertNotNull(userDto);
@@ -79,7 +79,7 @@ public class UserManagementTest {
         try {
             ResteasyClient client = new ResteasyClientBuilder().build();
             ResteasyWebTarget target = client
-                    .target("http://localhost:8080/iManager/user-management/authenticate-username");
+                    .target("http://localhost:8080/risk-rev/user-management/authenticate-username");
             Response response = target.request().post(Entity.entity(userDto, "application/json"));
             if (response.getStatus() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());

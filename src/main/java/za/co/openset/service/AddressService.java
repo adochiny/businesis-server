@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 /**
  * Created by adonis on 2015/06/07.
+ *
  */
 @Stateless
 public class AddressService {
