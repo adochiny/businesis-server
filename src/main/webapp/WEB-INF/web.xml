@@ -13,9 +13,8 @@
 
     <context-param>
         <param-name>resteasy.resources</param-name>
-        <param-value>za.co.openset.bo.risk.RiskManagement,
-            za.co.openset.bo.user.UserManagement
-        </param-value>
+        <param-value>za.co.openset.bo.AssetManagement,za.co.openset.bo.user.UserManagement,
+            za.co.openset.bo.GeneralManagement</param-value>
     </context-param>
 
     <servlet>

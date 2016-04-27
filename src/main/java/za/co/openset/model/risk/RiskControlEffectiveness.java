@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 /**
  * Created by adonis on 2015/06/06.
- *
  */
 @Entity
 @Table(name="risk_control_effectiveness",
@@ -15,7 +14,7 @@ public class RiskControlEffectiveness extends BasePo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "risk_control_effectiveness_seq")
     @SequenceGenerator(name = "risk_control_effectiveness_seq", sequenceName = "risk_control_effectiveness_seq")
-    @Column(name = "risk_control_effectiveness_Id")
+    @Column(name = "risk_control_effectiveness_id")
     private Long riskControlEffectivenessId;
 
     @Column(name = "scale", unique = true)

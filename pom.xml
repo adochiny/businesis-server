@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>risk-rev-server</groupId>
-	<artifactId>risk-rev-server</artifactId>
+	<groupId>businesis-server</groupId>
+	<artifactId>businesis-server</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>risk-rev-server Maven Webapp</name>
+	<name>businesis-server Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
     <properties>
@@ -17,48 +17,43 @@
         <wildfly-port>9990</wildfly-port>
         <wildfly-username>jboss</wildfly-username>
         <wildfly-password>P@ssw0rd</wildfly-password>
-
-		<version.org.jboss.bom>1.0.0.Final</version.org.jboss.bom>
-		<version.org.jboss.resteasy>3.0.8.Final</version.org.jboss.resteasy>
-
     </properties>
 
 	<dependencies>
 
-		<!--ws-->
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<!--<version>2.3.1.GA</version>-->
-			<version>3.0.8.Final</version>
+        <!--ws-->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <!--<version>2.3.1.GA</version>-->
+            <version>3.0.8.Final</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-client</artifactId>
-			<version>3.0.8.Final</version>
-			<scope>test</scope>
-		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.jboss.resteasy</groupId>-->
-			<!--<artifactId>resteasy-jackson-provider</artifactId>-->
-			<!--<version>3.0.8.Final</version>-->
-			<!--<scope>test</scope>-->
-		<!--</dependency>-->
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>3.0.8.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson-provider</artifactId>
+            <version>3.0.8.Final</version>
+            <scope>test</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>net.sf.scannotation</groupId>
-			<artifactId>scannotation</artifactId>
-			<version>1.0.2</version>
-		</dependency>
-		<!-- Jackson provider -->
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jackson-provider</artifactId>
-			<version>2.3.1.GA</version>
-			<scope>provided</scope>
-		</dependency>
-		<!--ws-->
+        <dependency>
+            <groupId>net.sf.scannotation</groupId>
+            <artifactId>scannotation</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <!-- Jackson provider -->
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.resteasy</groupId>-->
+            <!--<artifactId>resteasy-jackson-provider</artifactId>-->
+            <!--<version>2.3.1.GA</version>-->
+        <!--</dependency>-->
+        <!--ws-->
 
 		<dependency>
 			<groupId>javax</groupId>
@@ -121,44 +116,38 @@
 			<scope>test</scope>
 		</dependency>
 		<!--<dependency>-->
-		<!--<groupId>com.oracle</groupId>-->
-		<!--<artifactId>ojdbc14</artifactId>-->
-		<!--<version>10.2.0.4.0</version>-->
-		<!--<scope>test</scope>-->
+			<!--<groupId>com.oracle</groupId>-->
+			<!--<artifactId>ojdbc14</artifactId>-->
+			<!--<version>10.2.0.4.0</version>-->
+			<!--<scope>test</scope>-->
 		<!--</dependency>-->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.3-1100-jdbc41</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.3-1100-jdbc41</version>
+            <scope>test</scope>
+        </dependency>
 
-		<!--<dependency>-->
-		<!--<groupId>com.fasterxml.jackson.core</groupId>-->
-		<!--<artifactId>jackson-core</artifactId>-->
-		<!--<version>2.6.0-rc1</version>-->
-		<!--</dependency>-->
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-			<version>2.9.0</version>
-		</dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+            <!--<artifactId>jackson-core</artifactId>-->
+            <!--<version>2.6.0-rc1</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.9.0</version>
+        </dependency>
 
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.6.0-rc1</version>
-		</dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.6.0-rc1</version>
+        </dependency>
 
-		<dependency>
-			<groupId>za.co.fnb</groupId>
-			<artifactId>sale-source-model</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
-		</dependency>
-
-	</dependencies>
+    </dependencies>
 	<build>
-		<finalName>risk-rev</finalName>
+		<finalName>businesis</finalName>
 
 		<plugins>
 

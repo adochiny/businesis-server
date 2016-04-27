@@ -2,7 +2,6 @@ package za.co.openset.bo;
 
 /**
  * Created by adonis on 2015/06/28.
- *
  */
 
 import za.co.openset.dto.AssetSearchDto;

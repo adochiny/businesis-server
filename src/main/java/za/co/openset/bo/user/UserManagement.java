@@ -49,9 +49,34 @@ public class UserManagement {
         }*/
         // User loggedUser = (User) cacheService.getItem(user.getUserReference());
         if (user.getUserId() != null) {
-            aManagerUtils.setCommonFieldsUpdate(user, 1L);
+            aManagerUtils.setCommonFieldsUpdate(user, 100L);
         } else {
-            aManagerUtils.setCommonFieldsCreate(user, 1L);
+            aManagerUtils.setCommonFieldsCreate(user, 100L);
+        }
+        // update role details
+        if (user.getUserRole() != null) {
+            if (user.getUserRole().getRoleId() != null) {
+                aManagerUtils.setCommonFieldsUpdate(user.getUserRole(), 100L);
+            } else {
+                aManagerUtils.setCommonFieldsCreate(user.getUserRole(), 100L);
+            }
+        }
+        // update contact details
+        if (user.getContactDetails() != null) {
+            if (user.getContactDetails().getContactDetailsId() != null) {
+                aManagerUtils.setCommonFieldsUpdate(user.getContactDetails(), 100L);
+            } else {
+                aManagerUtils.setCommonFieldsCreate(user.getContactDetails(), 100L);
+            }
+        }
+
+        // update contact details
+        if (user.getAddress() != null) {
+            if (user.getAddress().getAddressId() != null) {
+                aManagerUtils.setCommonFieldsUpdate(user.getAddress(), 100L);
+            } else {
+                aManagerUtils.setCommonFieldsCreate(user.getAddress(), 100L);
+            }
         }
 
         try {

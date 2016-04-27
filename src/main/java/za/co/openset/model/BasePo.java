@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * Created by adonis on 2015/06/02.
+ *
  */
 @MappedSuperclass
 public class BasePo implements Serializable {
