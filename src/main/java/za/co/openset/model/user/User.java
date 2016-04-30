@@ -8,6 +8,7 @@ import java.util.*;
 
 /**
  * Created by adonis on 2015/06/03.
+ *
  */
 
 @Entity
@@ -114,8 +115,20 @@ public class User extends BasePo {
     @Column(name = "description", length = 100)
     private String description;
 
+    // admin_user or company_user
+    @Column(name = "user_type", length = 100, nullable = false)
+    private String userType;
+
     @Transient
     private String authdata;
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     public Organisation getOrganisation() {
         return organisation;

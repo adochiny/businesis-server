@@ -83,7 +83,9 @@ public class UserManagement {
             user = userService.update(user);
             user.setPassword(null);
         } catch (Exception e) {
-            return Response.status(Response.Status.NOT_ACCEPTABLE).entity(user).build();
+            Response.status(Response.Status.NOT_ACCEPTABLE).entity(user).build();
+             user.setException(org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e));
+             return Response.status(Response.Status.NOT_ACCEPTABLE).entity(user).build();
         }
         // create response.
         return Response.status(Response.Status.OK).entity(user).build();
@@ -114,7 +116,7 @@ public class UserManagement {
 	}
 
     @POST
-    @Path("/authenticate-username")
+    @Path("/authenticate-user")
     @Consumes("application/json")
     @Produces("application/json")
     public Response authenticateUsername(UserDto userdto) throws Exception {
@@ -123,9 +125,9 @@ public class UserManagement {
         Map<String, Object> map = new HashMap<>();
         map.put("username",userdto.getUsername());
         map.put("password",userdto.getPassword());
-
+        User user = new User();
         try {
-            User user = userService.getUserByField(map);
+            user = userService.getUserByField(map);
             // nullify reverse values.
             nullifyUserObject(user);
 
@@ -136,7 +138,9 @@ public class UserManagement {
             return Response.status(Response.Status.OK).entity(user).build();
         } catch (Exception e){
             e.printStackTrace();
-            return Response.status(Response.Status.EXPECTATION_FAILED).build();
+            user.setException(org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e));
+            return Response.status(Response.Status.EXPECTATION_FAILED).entity(user).build();
+            // return Response.status(Response.Status.EXPECTATION_FAILED).build();
         }
     }
 
@@ -189,12 +193,14 @@ public class UserManagement {
         //
         Map<String, Object> map = new HashMap<>();
         map.put("username",username);
+        User user = new User();
         try {
-            User user = userService.login(map, password);
+            user = userService.login(map, password);
             // nullify secret information.
             user.setPassword(null);
             return Response.status(Response.Status.OK).entity(user).build();
         } catch (Exception e) {
+            user.setException(org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e));
             return Response.status(Response.Status.EXPECTATION_FAILED).entity(null).build();
         }
 

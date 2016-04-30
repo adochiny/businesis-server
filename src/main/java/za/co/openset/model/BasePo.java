@@ -16,6 +16,9 @@ public class BasePo implements Serializable {
     @Transient
     private String userReference;
 
+    @Transient
+    private String exception;
+
     @Column(name = "created", nullable = false)
     @Temporal(TemporalType.DATE)
     Date created;
@@ -79,5 +82,13 @@ public class BasePo implements Serializable {
 
     public void setUserReference(String userReference) {
         this.userReference = userReference;
+    }
+
+    public String getException() {
+        return exception;
+    }
+
+    public void setException(String exception) {
+        this.exception = exception;
     }
 }

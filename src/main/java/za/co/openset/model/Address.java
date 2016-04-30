@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /**
  * Created by adonis on 2015/06/02.
+ *
  */
 
 @Entity
@@ -18,6 +19,9 @@ public class Address extends BasePo {
     @SequenceGenerator(name = "address_seq", sequenceName = "address_seq")
     @Column(name = "address_id")
     private Long addressId;
+
+    @Column(name = "parent_id")
+    private Long parentId;
 
     @Column(name="address_type")
     @Enumerated(EnumType.STRING)
@@ -61,6 +65,14 @@ public class Address extends BasePo {
 
     @Column(name="AnotherNumber")
     private Long anotherNumber;
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
 
     public Long getAnotherNumber() {
         return anotherNumber;

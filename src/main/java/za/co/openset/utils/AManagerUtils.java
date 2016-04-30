@@ -8,10 +8,12 @@ import java.util.Random;
 
 /**
  * Created by adonis on 2015/06/07.
+ *
  */
 public class AManagerUtils {
 
     public static final String ABCDEFGHIJKLMNOPQRSTUVWXYZ = "abcdefghijklmnopqrstuvwxyz";
+    public static final long CREATED_BY = 101L;
 
     public void setCommonFieldsCreate(BasePo po, Long crBy) {
         po.setIsactive(Boolean.TRUE);

@@ -2,6 +2,7 @@ package za.co.openset.dao;
 
 /**
  * Created by adonis on 2015/06/04.
+ *
  */
 
 import java.io.Serializable;

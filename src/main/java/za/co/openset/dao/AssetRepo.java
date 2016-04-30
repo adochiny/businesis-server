@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Created by adonis on 2015/06/05.
+ *
  */
 public class AssetRepo extends AbstractJPARepository<Asset> {
     public static final int TOTAL_NUMBER_OF_PERMISSABLE_RECORDS = 200;

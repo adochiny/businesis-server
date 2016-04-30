@@ -45,8 +45,12 @@ public class AddressRepo extends AbstractJPARepository<Address> {
         return super.findAll();
     }
 
-    public Address findAccountByProfileAndBusinessContextType(Long profileId) //, BusinessContextType businessContextType)
-    {
+    public List<Address> findByParent(Long parentId) {
+        return findByFieldName("parentId", parentId);
+    }
+
+    /*
+    public Address findByParent(Long parentId) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<Address> criteria = cb.createQuery(Address.class);
@@ -54,7 +58,7 @@ public class AddressRepo extends AbstractJPARepository<Address> {
 
         criteria.select(member).where(
                 cb.and(
-                        cb.equal(member.get("profileId"), profileId)
+                        cb.equal(member.get("parentId"), parentId)
                         //cb.equal( member.get("businessContextType"),businessContextType)
                 )
         );
@@ -64,7 +68,7 @@ public class AddressRepo extends AbstractJPARepository<Address> {
         } catch (NoResultException noResultExc) {
             return null;
         }
-    }
+    }*/
 
 
 }

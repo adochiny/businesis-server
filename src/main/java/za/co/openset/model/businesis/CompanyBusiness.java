@@ -3,12 +3,11 @@ package za.co.openset.model.businesis;
 import za.co.openset.model.Address;
 import za.co.openset.model.BasePo;
 import za.co.openset.model.ContactDetails;
-import za.co.openset.model.Organisation;
-import za.co.openset.model.user.UserRole;
-import za.co.openset.type.IdType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by adonis on 2015/06/03.
@@ -32,12 +31,11 @@ public class CompanyBusiness extends BasePo {
     private ContactDetails contactDetails;
 
     @OneToOne(optional=true,cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "postal_address_id")
     private Address postalAddress;
 
-    @OneToOne(optional=true,cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
-    @JoinColumn(name = "address_id")
-    private Address streetAddress;
+    @Transient
+    private List<Address> addresses = new ArrayList<>();
 
     @Column(name = "name", length = 150, unique = true)
     private String name;
@@ -71,16 +69,16 @@ public class CompanyBusiness extends BasePo {
     private String incomeTaxNumber;
 
     @Column(name = "VAT_number", length = 150)
-    private String VATNumber;
+    private String vatNumber;
 
     @Column(name = "PAYE_number", length = 150)
-    private String PAYENumber;
+    private String payeNumber;
 
     @Column(name = "UIF_number", length = 150)
-    private String UIFNumber;
+    private String uifNumber;
 
     @Column(name = "COID_number", length = 150)
-    private String COIDNumber;
+    private String coidNumber;
 
     @Column(name = "professional_standards_number", length = 150)
     private String professionalStandardsNumber;
@@ -89,10 +87,22 @@ public class CompanyBusiness extends BasePo {
     private String beeContributer;
 
     @Column(name = "BBBEE_certificate_number", length = 150)
-    private String BBBEECertificateNumber;
+    private String bbbeeCertificateNumber;
 
     @Column(name = "BBBEE_status_level", length = 150)
-    private String BBBEEStatusLevel;
+    private String bbbeeStatusLevel;
+
+    // new, inprogress and completed
+    @Column(name = "status", length = 25)
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Long getCompanyBusinessId() {
         return companyBusinessId;
@@ -118,15 +128,7 @@ public class CompanyBusiness extends BasePo {
         this.postalAddress = postalAddress;
     }
 
-    public Address getStreetAddress() {
-        return streetAddress;
-    }
-
-    public void setStreetAddress(Address streetAddress) {
-        this.streetAddress = streetAddress;
-    }
-
-    public String getName() {
+     public String getName() {
         return name;
     }
 
@@ -206,36 +208,52 @@ public class CompanyBusiness extends BasePo {
         this.incomeTaxNumber = incomeTaxNumber;
     }
 
-    public String getVATNumber() {
-        return VATNumber;
+    public String getVatNumber() {
+        return vatNumber;
     }
 
-    public void setVATNumber(String VATNumber) {
-        this.VATNumber = VATNumber;
+    public void setVatNumber(String vatNumber) {
+        this.vatNumber = vatNumber;
     }
 
-    public String getPAYENumber() {
-        return PAYENumber;
+    public String getPayeNumber() {
+        return payeNumber;
     }
 
-    public void setPAYENumber(String PAYENumber) {
-        this.PAYENumber = PAYENumber;
+    public void setPayeNumber(String payeNumber) {
+        this.payeNumber = payeNumber;
     }
 
-    public String getUIFNumber() {
-        return UIFNumber;
+    public String getUifNumber() {
+        return uifNumber;
     }
 
-    public void setUIFNumber(String UIFNumber) {
-        this.UIFNumber = UIFNumber;
+    public void setUifNumber(String uifNumber) {
+        this.uifNumber = uifNumber;
     }
 
-    public String getCOIDNumber() {
-        return COIDNumber;
+    public String getCoidNumber() {
+        return coidNumber;
     }
 
-    public void setCOIDNumber(String COIDNumber) {
-        this.COIDNumber = COIDNumber;
+    public void setCoidNumber(String coidNumber) {
+        this.coidNumber = coidNumber;
+    }
+
+    public String getBbbeeCertificateNumber() {
+        return bbbeeCertificateNumber;
+    }
+
+    public void setBbbeeCertificateNumber(String bbbeeCertificateNumber) {
+        this.bbbeeCertificateNumber = bbbeeCertificateNumber;
+    }
+
+    public String getBbbeeStatusLevel() {
+        return bbbeeStatusLevel;
+    }
+
+    public void setBbbeeStatusLevel(String bbbeeStatusLevel) {
+        this.bbbeeStatusLevel = bbbeeStatusLevel;
     }
 
     public String getProfessionalStandardsNumber() {
@@ -254,19 +272,11 @@ public class CompanyBusiness extends BasePo {
         this.beeContributer = beeContributer;
     }
 
-    public String getBBBEECertificateNumber() {
-        return BBBEECertificateNumber;
+    public List<Address> getAddresses() {
+        return addresses;
     }
 
-    public void setBBBEECertificateNumber(String BBBEECertificateNumber) {
-        this.BBBEECertificateNumber = BBBEECertificateNumber;
-    }
-
-    public String getBBBEEStatusLevel() {
-        return BBBEEStatusLevel;
-    }
-
-    public void setBBBEEStatusLevel(String BBBEEStatusLevel) {
-        this.BBBEEStatusLevel = BBBEEStatusLevel;
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }
