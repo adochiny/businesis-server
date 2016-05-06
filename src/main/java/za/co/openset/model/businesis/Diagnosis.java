@@ -39,6 +39,9 @@ public class Diagnosis extends BasePo {
     @Column(name = "status", length = 25)
     private String status;
 
+    @Column(name = "q0")
+    private Long q0;
+
     @Column(name = "q1")
     private Long q1;
 
@@ -116,6 +119,14 @@ public class Diagnosis extends BasePo {
 
     public void setCompanySection(String companySection) {
         this.companySection = companySection;
+    }
+
+    public Long getQ0() {
+        return q0;
+    }
+
+    public void setQ0(Long q0) {
+        this.q0 = q0;
     }
 
     public Long getQ1() {

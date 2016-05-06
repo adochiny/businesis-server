@@ -32,10 +32,7 @@ public class CompanyBusiness extends BasePo {
 
     @OneToOne(optional=true,cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
     @JoinColumn(name = "postal_address_id")
-    private Address postalAddress;
-
-    @Transient
-    private List<Address> addresses = new ArrayList<>();
+    private Address address;
 
     @Column(name = "name", length = 150, unique = true)
     private String name;
@@ -92,9 +89,32 @@ public class CompanyBusiness extends BasePo {
     @Column(name = "BBBEE_status_level", length = 150)
     private String bbbeeStatusLevel;
 
-    // new, inprogress and completed
-    @Column(name = "status", length = 25)
+    // new, inprogress and completed and BP for BP
+    @Column(name = "status", length = 25, nullable = false)
     private String status;
+
+    // Bp, Company
+    @Column(name = "bpc_type", length = 25, nullable = false)
+    private String bpcType;
+
+    @Column(name = "parent_id")
+    private Long parentId;
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getBpcType() {
+        return bpcType;
+    }
+
+    public void setBpcType(String bpcType) {
+        this.bpcType = bpcType;
+    }
 
     public String getStatus() {
         return status;
@@ -120,15 +140,15 @@ public class CompanyBusiness extends BasePo {
         this.contactDetails = contactDetails;
     }
 
-    public Address getPostalAddress() {
-        return postalAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setPostalAddress(Address postalAddress) {
-        this.postalAddress = postalAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-     public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -272,11 +292,4 @@ public class CompanyBusiness extends BasePo {
         this.beeContributer = beeContributer;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
 }

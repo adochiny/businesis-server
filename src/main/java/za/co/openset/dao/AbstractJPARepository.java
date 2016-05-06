@@ -162,6 +162,24 @@ public abstract class AbstractJPARepository<T> implements Serializable {
         return getEntityManager().createQuery(criteria).getSingleResult();
     }
 
+    public List<T> findEntityByFieldNames (Map<String, Object> map) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+
+        CriteriaQuery<T> criteria = cb.createQuery(type);
+        Root<T> member = criteria.from(type);
+
+        List<Predicate> criteriaList = new ArrayList<Predicate>();
+
+        criteria.select(member);
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            Predicate predicate = cb.equal(member.get(entry.getKey()), entry.getValue());
+            criteriaList.add(predicate);
+        }
+        criteria.where(cb.and(criteriaList.toArray(new Predicate[0])));
+        //return getEntityManager().createQuery(criteria).getSingleResult();
+        return getEntityManager().createQuery(criteria).getResultList();
+    }
+
     public T findEntityByFieldName (Map<String, Object> map) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 

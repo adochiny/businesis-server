@@ -20,123 +20,73 @@ public class Address extends BasePo {
     @Column(name = "address_id")
     private Long addressId;
 
-    @Column(name = "parent_id")
-    private Long parentId;
-
-    @Column(name="address_type")
+    @Column(name="paddress_type")
     @Enumerated(EnumType.STRING)
-    private AddressType addressType;
+    private AddressType paddressType;
 
-    @Column(name="complex_name")
-    private String complexName;
+    @Column(name="pcomplex_name")
+    private String pcomplexName;
 
-    @Column(name="po_box")
-    private String poBox;
+    @Column(name="ppo_box")
+    private String ppoBox;
 
-    @Column(name="unit_number")
-    private String unitNumber;
+    @Column(name="punit_number")
+    private String punitNumber;
 
-    @Column(name="house_number")
-    private String houseNumber;
+    @Column(name="phouse_number")
+    private String phouseNumber;
 
-    @Column(name="street_name")
-    private String streetName;
+    @Column(name="pstreet_name")
+    private String pstreetName;
 
-    @Column(name="postal_code")
-    private String postalCode;
+    @Column(name="ppostal_code")
+    private String ppostalCode;
 
-    @Column(name="erf_number")
-    private String erfNumber;
+    @Column(name="pcountry")
+    private String pcountry;
 
-    @Column(name="portion_number")
-    private String portionNumber;
+    @Column(name="pprovince")
+    private String pprovince;
 
-    @Column(name="country")
-    private String country;
+    @Column(name="ptown")
+    private String ptownCity;
 
-    @Column(name="province")
-    private String province;
+    @Column(name="psuburb")
+    private String psuburb;
 
-    @Column(name="town")
-    private String townCity;
+    @Column(name="saddress_type")
+    @Enumerated(EnumType.STRING)
+    private AddressType saddressType;
 
-    @Column(name="suburb")
-    private String suburb;
+    @Column(name="scomplex_name")
+    private String scomplexName;
 
-    @Column(name="AnotherNumber")
-    private Long anotherNumber;
+    @Column(name="spo_box")
+    private String spoBox;
 
-    public Long getParentId() {
-        return parentId;
-    }
+    @Column(name="sunit_number")
+    private String sunitNumber;
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
+    @Column(name="shouse_number")
+    private String shouseNumber;
 
-    public Long getAnotherNumber() {
-        return anotherNumber;
-    }
+    @Column(name="sstreet_name")
+    private String sstreetName;
 
-    public void setAnotherNumber(Long anotherNumber) {
-        this.anotherNumber = anotherNumber;
-    }
+    @Column(name="spostal_code")
+    private String spostalCode;
 
-    public String getHouseNumber() {
-        return houseNumber;
-    }
+    @Column(name="scountry")
+    private String scountry;
 
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
+    @Column(name="sprovince")
+    private String sprovince;
 
-    public String getStreetName() {
-        return streetName;
-    }
+    @Column(name="stown")
+    private String stownCity;
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
-
-    public String getErfNumber() {
-        return erfNumber;
-    }
-
-    public void setErfNumber(String erfNumber) {
-        this.erfNumber = erfNumber;
-    }
-
-    public String getPortionNumber() {
-        return portionNumber;
-    }
-
-    public void setPortionNumber(String portionNumber) {
-        this.portionNumber = portionNumber;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getTownCity() {
-        return townCity;
-    }
-
-    public void setTownCity(String townCity) {
-        this.townCity = townCity;
-    }
-
-    public String getSuburb() {
-        return suburb;
-    }
-
-    public void setSuburb(String suburb) {
-        this.suburb = suburb;
-    }
+    @Column(name="ssuburb")
+    private String ssuburb;
 
     public Long getAddressId() {
         return addressId;
@@ -146,51 +96,179 @@ public class Address extends BasePo {
         this.addressId = addressId;
     }
 
-    public String getCountry() {
-        return country;
+    public AddressType getPaddressType() {
+        return paddressType;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setPaddressType(AddressType paddressType) {
+        this.paddressType = paddressType;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getPcomplexName() {
+        return pcomplexName;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPcomplexName(String pcomplexName) {
+        this.pcomplexName = pcomplexName;
     }
 
-    public String getComplexName() {
-        return complexName;
+    public String getPpoBox() {
+        return ppoBox;
     }
 
-    public void setComplexName(String complexName) {
-        this.complexName = complexName;
+    public void setPpoBox(String ppoBox) {
+        this.ppoBox = ppoBox;
     }
 
-    public String getUnitNumber() {
-        return unitNumber;
+    public String getPunitNumber() {
+        return punitNumber;
     }
 
-    public void setUnitNumber(String unitNumber) {
-        this.unitNumber = unitNumber;
+    public void setPunitNumber(String punitNumber) {
+        this.punitNumber = punitNumber;
     }
 
-    public String getPoBox() {
-        return poBox;
+    public String getPhouseNumber() {
+        return phouseNumber;
     }
 
-    public void setPoBox(String poBox) {
-        this.poBox = poBox;
+    public void setPhouseNumber(String phouseNumber) {
+        this.phouseNumber = phouseNumber;
     }
 
-    public AddressType getAddressType() {
-        return addressType;
+    public String getPstreetName() {
+        return pstreetName;
     }
 
-    public void setAddressType(AddressType addressType) {
-        this.addressType = addressType;
+    public void setPstreetName(String pstreetName) {
+        this.pstreetName = pstreetName;
+    }
+
+    public String getPpostalCode() {
+        return ppostalCode;
+    }
+
+    public void setPpostalCode(String ppostalCode) {
+        this.ppostalCode = ppostalCode;
+    }
+
+    public String getPcountry() {
+        return pcountry;
+    }
+
+    public void setPcountry(String pcountry) {
+        this.pcountry = pcountry;
+    }
+
+    public String getPprovince() {
+        return pprovince;
+    }
+
+    public void setPprovince(String pprovince) {
+        this.pprovince = pprovince;
+    }
+
+    public String getPtownCity() {
+        return ptownCity;
+    }
+
+    public void setPtownCity(String ptownCity) {
+        this.ptownCity = ptownCity;
+    }
+
+    public String getPsuburb() {
+        return psuburb;
+    }
+
+    public void setPsuburb(String psuburb) {
+        this.psuburb = psuburb;
+    }
+
+    public AddressType getSaddressType() {
+        return saddressType;
+    }
+
+    public void setSaddressType(AddressType saddressType) {
+        this.saddressType = saddressType;
+    }
+
+    public String getScomplexName() {
+        return scomplexName;
+    }
+
+    public void setScomplexName(String scomplexName) {
+        this.scomplexName = scomplexName;
+    }
+
+    public String getSpoBox() {
+        return spoBox;
+    }
+
+    public void setSpoBox(String spoBox) {
+        this.spoBox = spoBox;
+    }
+
+    public String getSunitNumber() {
+        return sunitNumber;
+    }
+
+    public void setSunitNumber(String sunitNumber) {
+        this.sunitNumber = sunitNumber;
+    }
+
+    public String getShouseNumber() {
+        return shouseNumber;
+    }
+
+    public void setShouseNumber(String shouseNumber) {
+        this.shouseNumber = shouseNumber;
+    }
+
+    public String getSstreetName() {
+        return sstreetName;
+    }
+
+    public void setSstreetName(String sstreetName) {
+        this.sstreetName = sstreetName;
+    }
+
+    public String getSpostalCode() {
+        return spostalCode;
+    }
+
+    public void setSpostalCode(String spostalCode) {
+        this.spostalCode = spostalCode;
+    }
+
+    public String getScountry() {
+        return scountry;
+    }
+
+    public void setScountry(String scountry) {
+        this.scountry = scountry;
+    }
+
+    public String getSprovince() {
+        return sprovince;
+    }
+
+    public void setSprovince(String sprovince) {
+        this.sprovince = sprovince;
+    }
+
+    public String getStownCity() {
+        return stownCity;
+    }
+
+    public void setStownCity(String stownCity) {
+        this.stownCity = stownCity;
+    }
+
+    public String getSsuburb() {
+        return ssuburb;
+    }
+
+    public void setSsuburb(String ssuburb) {
+        this.ssuburb = ssuburb;
     }
 }

@@ -33,6 +33,15 @@ public class UserService {
         return userRepo.findById(id);
     }
 
+    public User getCompanyUserById(Long companyId) throws Exception {
+        List<User> parentById = userRepo.findByFieldName("parentId", companyId);
+        // take the first one
+        if (parentById != null && parentById.size() > 0) {
+          return (User)parentById.toArray()[0];
+        }
+        throw new Exception("User not found");
+    }
+
     public User getUserByField(Map map) throws Exception {
         return userRepo.findEntityByFieldName(map);
     }

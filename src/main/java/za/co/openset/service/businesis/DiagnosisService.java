@@ -31,15 +31,13 @@ public class DiagnosisService {
 
     // diagnosis functions
     public Diagnosis update(Diagnosis diagnosis) throws Exception {
-
+        diagnosis.setCompanySectionId(diagnosis.getCompanyId()+"_" + diagnosis.getCompanySection());
         if (diagnosis.getDiagnosisId() != null) {
             aManagerUtils.setCommonFieldsUpdate(diagnosis, AManagerUtils.CREATED_BY);
         } else {
             aManagerUtils.setCommonFieldsCreate(diagnosis, AManagerUtils.CREATED_BY);
         }
-
         Diagnosis updated = diagnosisRepo.update(diagnosis);
-
         return updated;
     }
 
@@ -54,6 +52,10 @@ public class DiagnosisService {
         return all;
     }
 
-
+    public List<Diagnosis> getAllCompanyForBP(String bpId) throws Exception {
+        // addressRepo.findByParent(byId.getCompanyBusinessId())
+        List<Diagnosis> all = diagnosisRepo.getAllCompanyDiagnosis(bpId);
+        return all;
+    }
 
 }

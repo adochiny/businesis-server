@@ -1,5 +1,6 @@
 package za.co.openset.bo.user;
 
+import za.co.openset.bo.OptionsHandler;
 import za.co.openset.dto.UserDto;
 import za.co.openset.model.Address;
 import za.co.openset.model.ContactDetails;
@@ -36,6 +37,8 @@ public class UserManagement {
     @Inject
     private AManagerUtils aManagerUtils;
 
+    @Inject
+    private OptionsHandler optionsHandler;
 
     @POST
     @Path("/create-update-user")
@@ -111,7 +114,29 @@ public class UserManagement {
         logger.info("User by userId : " + id);
         //
         User user = userService.getUserById(id);
-        user.getUserRole().setUserList(new ArrayList<User>());
+        if (user.getUserRole() != null) {
+            user.getUserRole().setUserList(new ArrayList<User>());
+        }
+        return Response.status(Response.Status.OK).entity(user).build();
+	}
+
+    @GET
+	@Path("/company-user/{companyId}")
+	@Produces("application/json")
+	public Response getCompanyUserById(@PathParam("companyId") Long companyId) throws Exception {
+        logger.info("User by companyId : " + companyId);
+        //
+        User user = new User();
+        try {
+            user = userService.getCompanyUserById(companyId);
+        } catch (Exception e){
+            e.printStackTrace();
+            user.setException(org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e));
+            return Response.status(Response.Status.OK).entity(user).build();
+        }
+        if (user.getUserRole() != null) {
+            user.getUserRole().setUserList(new ArrayList<User>());
+        }
         return Response.status(Response.Status.OK).entity(user).build();
 	}
 
@@ -121,6 +146,8 @@ public class UserManagement {
     @Produces("application/json")
     public Response authenticateUsername(UserDto userdto) throws Exception {
         logger.info("User auth : " + userdto.getUsername());
+
+        Response res = optionsHandler.toResponse(null);
         //
         Map<String, Object> map = new HashMap<>();
         map.put("username",userdto.getUsername());
@@ -135,11 +162,11 @@ public class UserManagement {
             cacheService.addItem(userRef, user);
             user.setUserReference(userRef);
             user.setPassword(null);
-            return Response.status(Response.Status.OK).entity(user).build();
+            return res.status(Response.Status.OK).entity(user).build();
         } catch (Exception e){
             e.printStackTrace();
             user.setException(org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e));
-            return Response.status(Response.Status.EXPECTATION_FAILED).entity(user).build();
+            return res.status(Response.Status.EXPECTATION_FAILED).entity(user).build();
             // return Response.status(Response.Status.EXPECTATION_FAILED).build();
         }
     }
@@ -239,9 +266,9 @@ public class UserManagement {
     @Produces("application/json")
     public Response getAddressById(@PathParam("id") Long id) throws Exception {
         Address address = new Address();
-        address.setComplexName(id + "");
-        address.setStreetName("Lokesh");
-        address.setSuburb("Gupta");
+        address.setPcomplexName(id + "");
+        address.setPstreetName("Lokesh");
+        address.setPsuburb("Gupta");
         aManagerUtils.setCommonFieldsCreate(address, 101L);
         addressService.create(address);
         return Response.status(Response.Status.OK).entity(address).build();

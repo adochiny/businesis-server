@@ -122,6 +122,17 @@ public class User extends BasePo {
     @Transient
     private String authdata;
 
+    @Column(name = "parent_id")
+    private Long parentId;
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
     public String getUserType() {
         return userType;
     }

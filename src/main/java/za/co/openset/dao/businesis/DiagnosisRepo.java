@@ -28,4 +28,6 @@ public class DiagnosisRepo extends AbstractJPARepository<Diagnosis> {
     public List<Diagnosis> getAllCompanyDiagnosis(String companySectionId) {
         return findByFieldName("companySectionId", companySectionId);
     }
+
+
 }
