@@ -2,17 +2,21 @@ package za.co.openset.service.businesis;
 
 import za.co.openset.dao.AddressRepo;
 import za.co.openset.dao.businesis.CertificateRepo;
+import za.co.openset.dao.businesis.CertificateSummaryRepo;
 import za.co.openset.dao.businesis.CompanyBusinessRepo;
 import za.co.openset.dao.businesis.DiagnosisRepo;
 import za.co.openset.model.businesis.Certificate;
+import za.co.openset.model.businesis.CertificateSummary;
 import za.co.openset.model.businesis.CompanyBusiness;
 import za.co.openset.model.businesis.Diagnosis;
 import za.co.openset.utils.AManagerUtils;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.Query;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by adonis on 2015/06/28.
@@ -30,6 +34,9 @@ public class BusinesisService {
 
     @Inject
     private CertificateRepo certificateRepo;
+
+    @Inject
+    private CertificateSummaryRepo certificateSummaryRepo;
 
     @Inject
     private AddressRepo addressRepo;
@@ -129,6 +136,24 @@ public class BusinesisService {
     }
 
 
+    public CertificateSummary getCertSummaryById(Long certId) throws Exception {
+        return certificateSummaryRepo.findById(certId);
+    }
+    public CertificateSummary getCompanyCertSummaryId(Long compId) throws Exception {
+        return certificateSummaryRepo.findEntityByFieldName("companyId", compId);
+    }
+
+    public CertificateSummary updateCertificateSummary(CertificateSummary certificate) throws Exception {
+        if (certificate.getCertificateSummaryId() != null) {
+            aManagerUtils.setCommonFieldsUpdate(certificate, AManagerUtils.CREATED_BY);
+        } else {
+            aManagerUtils.setCommonFieldsCreate(certificate, AManagerUtils.CREATED_BY);
+        }
+        CertificateSummary updated = certificateSummaryRepo.update(certificate);
+        return updated;
+    }
+
+
     public Certificate updateCertificate(Certificate certificate) throws Exception {
         certificate.setCompanySectionId(certificate.getCompanyId() + "_" + certificate.getCompanySection());
         if (certificate.getCertificateId() != null) {
@@ -199,33 +224,37 @@ public class BusinesisService {
      * @throws Exception
      */
     public Certificate generateCertificate(Diagnosis diagnosis) throws Exception {
-        Certificate cc = getCompanyCertificate(diagnosis.getCompanyId(), diagnosis.getCompanySection());
-        if (cc == null) {
-            cc = new Certificate();
+        Certificate cc = new Certificate();
+        try {
+            cc = getCompanyCertificate(diagnosis.getCompanyId(), diagnosis.getCompanySection());
+        } catch (Exception e) {
+            // do nothing because its expected error if there is no record.
+            e.printStackTrace();
         }
+
         cc.setCompanyId(diagnosis.getCompanyId());
         cc.setCompanySection(diagnosis.getCompanySection());
 
         switch (diagnosis.getCompanySection()) {
-            case "Governance":  cc = calculateCertValue(cc, diagnosis, 7);
+            case "Governance":  cc = calculateCertValue(cc, diagnosis, 9);
                 break;
-            case "TaxCompliance":  cc = calculateCertValue(cc, diagnosis, 7);
+            case "TaxCompliance":  cc = calculateCertValue(cc, diagnosis, 3);
                 break;
-            case "Labour": cc = calculateCertValue(cc, diagnosis, 7);
+            case "Labour": cc = calculateCertValue(cc, diagnosis, 5);
                 break;
-            case "SafetyHealth": cc = calculateCertValue(cc, diagnosis, 7);
+            case "SafetyHealth": cc = calculateCertValue(cc, diagnosis, 4);
                 break;
-            case "Standards": cc = calculateCertValue(cc, diagnosis, 7);
+            case "Standards": cc = calculateCertValue(cc, diagnosis, 1);
                 break;
-            case "BBBEE": cc = calculateCertValue(cc, diagnosis, 7);
+            case "BBBEE": cc = calculateCertValue(cc, diagnosis, 2);
                 break;
-            case "Production": cc = calculateCertValue(cc, diagnosis, 7);
+            case "Production": cc = calculateCertValue(cc, diagnosis, 12);
                 break;
-            case "SalesMarketing": cc = calculateCertValue(cc, diagnosis, 7);
+            case "SalesMarketing": cc = calculateCertValue(cc, diagnosis, 10);
                 break;
-            case "InformationTechnology": cc = calculateCertValue(cc, diagnosis, 7);
+            case "InformationTechnology": cc = calculateCertValue(cc, diagnosis, 8);
                 break;
-            case "FinancialControlsManagement": cc = calculateCertValue(cc, diagnosis, 7);
+            case "FinancialControlsManagement": cc = calculateCertValue(cc, diagnosis, 9);
                 break;
             case "IntellectualProperty": cc = calculateCertValue(cc, diagnosis, 7);
                 break;
@@ -246,30 +275,30 @@ public class BusinesisService {
         int totalNumber2 = 0;
         int totalNumber3 = 0;
         int totalNumber4 = 0;
-        for (int i = 0; i < total ; i++) {
-            if (new Long(1).equals(darray[i])) {
-              totalNumber1++;
-            }
-            if (new Long(2).equals(darray[i])) {
-              totalNumber2++;
-            }
-            if (new Long(3).equals(darray[i])) {
-              totalNumber3++;
-            }
-            if (new Long(4).equals(darray[i])) {
-              totalNumber4++;
+        for (int i = 0; i < total + 1 ; i++) {
+            if (darray[i] != null){
+                if (1 == darray[i]) {
+                    totalNumber1++;
+                } else if (2 == darray[i]) {
+                    totalNumber2++;
+                } else if (3 == darray[i]) {
+                    totalNumber3++;
+                } else if (4 == darray[i]) {
+                    totalNumber4++;
+                }
             }
         }
-        if (totalNumber1/total > 0.25) {
+
+        if (totalNumber1 > (total/2)) {
             cert.setValue("1");
             cert.setDescription("1");
-        } else if (totalNumber2/total > 0.25) {
+        } else if (totalNumber2 > (total/2)) {
             cert.setValue("2");
             cert.setDescription("2");
-        } else if (totalNumber3/total > 0.25) {
+        } else if (totalNumber3 > (total/2)) {
             cert.setValue("3");
             cert.setDescription("3");
-        } else if (totalNumber4/total > 0.25) {
+        } else if (totalNumber4 > (total/2)) {
             cert.setValue("4");
             cert.setDescription("4");
         } else {

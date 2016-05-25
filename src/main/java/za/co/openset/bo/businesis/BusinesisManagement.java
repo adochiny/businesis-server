@@ -6,6 +6,7 @@ package za.co.openset.bo.businesis;
  */
 
 import za.co.openset.bo.OptionsHandler;
+import za.co.openset.model.businesis.Certificate;
 import za.co.openset.model.businesis.CompanyBusiness;
 import za.co.openset.model.businesis.Diagnosis;
 import za.co.openset.service.businesis.BusinesisService;
@@ -171,5 +172,13 @@ public class BusinesisManagement {
         return Response.status(Response.Status.OK).entity(all).build();
     }
 
+    @GET
+    @Path("/get-all-companies-certs/{companyId}")
+    @Produces("application/json")
+    public Response getAllCompaniesCerts(@PathParam("companyId")Long companyId) throws Exception {
+        //
+        List<Certificate> all = businesisService.generateCertificates(companyId);
+        return Response.status(Response.Status.OK).entity(all).build();
+    }
 
 }

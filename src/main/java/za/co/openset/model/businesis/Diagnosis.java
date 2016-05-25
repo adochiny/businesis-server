@@ -81,6 +81,43 @@ public class Diagnosis extends BasePo {
     @Column(name = "q13")
     private Long q13;
 
+    @Column(name = "ass_q1")
+    private Long assq1;
+
+    @Column(name = "ass_q2")
+    private Long assq2;
+
+    @Column(name = "ass_q3")
+    private Long assq3;
+
+    @Column(name = "ass_q4")
+    private Long assq4;
+
+    @Column(name = "ass_q5")
+    private Long assq5;
+
+    @Column(name = "ass_q6")
+    private Long assq6;
+
+    @Column(name = "ass_q7")
+    private Long assq7;
+
+    @Column(name = "ass_q8")
+    private Long assq8;
+
+    @Column(name = "ass_q9")
+    private Long assq9;
+
+    @Column(name = "ass_q10")
+    private Long assq10;
+
+    @Column(name = "ass_q11")
+    private Long assq11;
+
+    @Column(name = "ass_q12")
+    private Long assq12;
+
+
     public String getStatus() {
         return status;
     }
@@ -231,5 +268,101 @@ public class Diagnosis extends BasePo {
 
     public void setQ13(Long q13) {
         this.q13 = q13;
+    }
+
+    public Long getAssq1() {
+        return assq1;
+    }
+
+    public void setAssq1(Long assq1) {
+        this.assq1 = assq1;
+    }
+
+    public Long getAssq2() {
+        return assq2;
+    }
+
+    public void setAssq2(Long assq2) {
+        this.assq2 = assq2;
+    }
+
+    public Long getAssq3() {
+        return assq3;
+    }
+
+    public void setAssq3(Long assq3) {
+        this.assq3 = assq3;
+    }
+
+    public Long getAssq4() {
+        return assq4;
+    }
+
+    public void setAssq4(Long assq4) {
+        this.assq4 = assq4;
+    }
+
+    public Long getAssq5() {
+        return assq5;
+    }
+
+    public void setAssq5(Long assq5) {
+        this.assq5 = assq5;
+    }
+
+    public Long getAssq6() {
+        return assq6;
+    }
+
+    public void setAssq6(Long assq6) {
+        this.assq6 = assq6;
+    }
+
+    public Long getAssq7() {
+        return assq7;
+    }
+
+    public void setAssq7(Long assq7) {
+        this.assq7 = assq7;
+    }
+
+    public Long getAssq8() {
+        return assq8;
+    }
+
+    public void setAssq8(Long assq8) {
+        this.assq8 = assq8;
+    }
+
+    public Long getAssq9() {
+        return assq9;
+    }
+
+    public void setAssq9(Long assq9) {
+        this.assq9 = assq9;
+    }
+
+    public Long getAssq10() {
+        return assq10;
+    }
+
+    public void setAssq10(Long assq10) {
+        this.assq10 = assq10;
+    }
+
+    public Long getAssq11() {
+        return assq11;
+    }
+
+    public void setAssq11(Long assq11) {
+        this.assq11 = assq11;
+    }
+
+    public Long getAssq12() {
+        return assq12;
+    }
+
+    public void setAssq12(Long assq12) {
+        this.assq12 = assq12;
     }
 }

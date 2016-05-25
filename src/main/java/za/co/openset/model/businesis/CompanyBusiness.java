@@ -53,6 +53,9 @@ public class CompanyBusiness extends BasePo {
     @Column(name = "industry", length = 150)
     private String industry;
 
+    @Column(name = "year_of_registration", length = 50)
+    private String yearOfRegistration;
+
     @Column(name = "years_in_business", length = 150)
     private String yearsInBusiness;
 
@@ -292,4 +295,11 @@ public class CompanyBusiness extends BasePo {
         this.beeContributer = beeContributer;
     }
 
+    public String getYearOfRegistration() {
+        return yearOfRegistration;
+    }
+
+    public void setYearOfRegistration(String yearOfRegistration) {
+        this.yearOfRegistration = yearOfRegistration;
+    }
 }
