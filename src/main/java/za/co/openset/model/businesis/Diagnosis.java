@@ -81,6 +81,15 @@ public class Diagnosis extends BasePo {
     @Column(name = "q13")
     private Long q13;
 
+    @Column(name = "q14")
+    private Long q14;
+
+    @Column(name = "q15")
+    private Long q15;
+
+    @Column(name = "q16")
+    private Long q16;
+
     @Column(name = "ass_q1")
     private Long assq1;
 
@@ -116,6 +125,18 @@ public class Diagnosis extends BasePo {
 
     @Column(name = "ass_q12")
     private Long assq12;
+
+    @Column(name = "ass_q13")
+    private Long assq13;
+
+    @Column(name = "ass_q14")
+    private Long assq14;
+
+    @Column(name = "ass_q15")
+    private Long assq15;
+
+    @Column(name = "ass_q16")
+    private Long assq16;
 
 
     public String getStatus() {
@@ -364,5 +385,61 @@ public class Diagnosis extends BasePo {
 
     public void setAssq12(Long assq12) {
         this.assq12 = assq12;
+    }
+
+    public Long getQ14() {
+        return q14;
+    }
+
+    public void setQ14(Long q14) {
+        this.q14 = q14;
+    }
+
+    public Long getQ15() {
+        return q15;
+    }
+
+    public void setQ15(Long q15) {
+        this.q15 = q15;
+    }
+
+    public Long getQ16() {
+        return q16;
+    }
+
+    public void setQ16(Long q16) {
+        this.q16 = q16;
+    }
+
+    public Long getAssq13() {
+        return assq13;
+    }
+
+    public void setAssq13(Long assq13) {
+        this.assq13 = assq13;
+    }
+
+    public Long getAssq14() {
+        return assq14;
+    }
+
+    public void setAssq14(Long assq14) {
+        this.assq14 = assq14;
+    }
+
+    public Long getAssq15() {
+        return assq15;
+    }
+
+    public void setAssq15(Long assq15) {
+        this.assq15 = assq15;
+    }
+
+    public Long getAssq16() {
+        return assq16;
+    }
+
+    public void setAssq16(Long assq16) {
+        this.assq16 = assq16;
     }
 }

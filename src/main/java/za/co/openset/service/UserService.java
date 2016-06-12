@@ -7,11 +7,13 @@ import za.co.openset.model.user.UserRole;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by adonis on 2015/06/07.
+ *
  */
 @Stateless
 public class UserService {
@@ -33,6 +35,7 @@ public class UserService {
         return userRepo.findById(id);
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public User getCompanyUserById(Long companyId) throws Exception {
         List<User> parentById = userRepo.findByFieldName("parentId", companyId);
         // take the first one

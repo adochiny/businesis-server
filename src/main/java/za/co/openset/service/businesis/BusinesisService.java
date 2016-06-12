@@ -260,51 +260,77 @@ public class BusinesisService {
                 break;
             case "RiskManagement": cc = calculateCertValue(cc, diagnosis, 7);
                 break;
+            case "TechnicalSiteVisit": cc = calculateCertValue(cc, diagnosis, 15);
+                break;
 
         }
         return cc;
     }
 
-    private Certificate calculateCertValue(Certificate cert, Diagnosis d, int total) {
+    private Certificate calculateCertValue(Certificate cert, Diagnosis d, int totalNumberOfQues) {
         // put the diagnosis values in array
-        Long [] darray = new Long[13];
+        Long [] darray = new Long[16];
         darray[0] = d.getQ0(); darray[1] = d.getQ1(); darray[2] = d.getQ2(); darray[3] = d.getQ3(); darray[4] = d.getQ4();
         darray[5] = d.getQ5(); darray[6] = d.getQ6(); darray[7] = d.getQ7(); darray[8] = d.getQ8(); darray[9] = d.getQ9();
         darray[10] = d.getQ10(); darray[11] = d.getQ11(); darray[12] = d.getQ12();
-        int totalNumber1 = 0;
-        int totalNumber2 = 0;
-        int totalNumber3 = 0;
-        int totalNumber4 = 0;
-        for (int i = 0; i < total + 1 ; i++) {
+        darray[13] = d.getQ13(); darray[14] = d.getQ14(); darray[15] = d.getQ15();
+
+        int totalOfNumber1s = 0;
+        int totalOfNumber2s = 0;
+        int totalOfNumber3s = 0;
+        int totalOfNumber4s = 0;
+        for (int i = 0; i < totalNumberOfQues + 1 ; i++) {
             if (darray[i] != null){
                 if (1 == darray[i]) {
-                    totalNumber1++;
+                    totalOfNumber1s++;
                 } else if (2 == darray[i]) {
-                    totalNumber2++;
+                    totalOfNumber2s++;
                 } else if (3 == darray[i]) {
-                    totalNumber3++;
+                    totalOfNumber3s++;
                 } else if (4 == darray[i]) {
-                    totalNumber4++;
+                    totalOfNumber4s++;
                 }
             }
         }
 
-        if (totalNumber1 > (total/2)) {
+        /**
+         *
+         * % number of ones.
+         *
+         */
+
+        int percentageOf1s = (totalOfNumber1s / totalNumberOfQues) * 100;
+        if (percentageOf1s == 100) {
             cert.setValue("1");
-            cert.setDescription("1");
-        } else if (totalNumber2 > (total/2)) {
+            cert.setDescription("High");
+
+        } else if (percentageOf1s > 75) {
+            cert.setValue("2");
+            cert.setDescription("Medium");
+
+        } else if (percentageOf1s < 75) {
+            cert.setValue("3");
+            cert.setDescription("Low");
+
+        }
+
+        /*
+        if (totalOfNumber1s > (totalNumberOfQues/2)) {
+            cert.setValue("1");
+            cert.setDescription("High");
+        } else if (totalOfNumber2s > (totalNumberOfQues/2)) {
             cert.setValue("2");
             cert.setDescription("2");
-        } else if (totalNumber3 > (total/2)) {
+        } else if (totalOfNumber3s > (totalNumberOfQues/2)) {
             cert.setValue("3");
             cert.setDescription("3");
-        } else if (totalNumber4 > (total/2)) {
+        } else if (totalOfNumber4s > (totalNumberOfQues/2)) {
             cert.setValue("4");
             cert.setDescription("4");
         } else {
             cert.setValue("2");
             cert.setDescription("2");
-        }
+        }*/
 
        return cert;
     }
